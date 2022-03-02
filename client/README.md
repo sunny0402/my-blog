@@ -14,8 +14,8 @@ create app on heroku website
 connect heroku app to github repo and enable automatic deploys
 
 touch Procfile
-web: node index.js
+web: node backend/index.js
 
 ```
 
-    // "start": "node index.js",
+heroku config:set NPM_CONFIG_PRODUCTION=false --app sunnycodes
