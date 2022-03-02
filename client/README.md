@@ -9,7 +9,13 @@ heroku login
 
 git status
 
-heroku git:remote -a sunnycodes
+create app on heroku website
+
+connect heroku app to github repo and enable automatic deploys
+
 touch Procfile
-web: index.js
+web: node index.js
+
 ```
+
+    // "start": "node index.js",
