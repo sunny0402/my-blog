@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(cors());
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "client/build")));
-// app.use(express.static(path.join(__dirname, "client/index.html")));
+// app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "../client/index.html")));
 
-console.log(__dirname);
-console.log(path.join(__dirname, "../client/index.html"));
+// console.log(__dirname);
+// console.log(path.join(__dirname, "../client/index.html"));
 
 // an api endpoint that returns a short list of items
 app.get("/api/getArticles", (req, res) => {
