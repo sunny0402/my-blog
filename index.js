@@ -10,12 +10,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-// Serve the static files from the React app
-// app.use(express.static(path.join(__dirname, "client/build")));
-app.use(express.static(path.join(__dirname, "../client/index.html")));
+// if deployed serve static files from build folder
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build/")));
+}
 
-// console.log(__dirname);
-// console.log(path.join(__dirname, "../client/index.html"));
+// console.log(path.join(__dirname, "/client/));
 
 // an api endpoint that returns a short list of items
 app.get("/api/getArticles", (req, res) => {
