@@ -21,3 +21,17 @@ web: node backend/index.js
 heroku config:set NPM_CONFIG_PRODUCTION=false --app sunnycodes
 
 heroku run bash -a $APP_NAME
+
+## MySQL
+
+Installation:
+
+brew install mysql
+
+MySQL is configured to only allow connections from localhost by default
+
+To connect run: mysql -uroot To restart mysql after an upgrade: brew services restart mysql
+
+brew install --cask mysqlworkbench
+
+mysql://ba244609398a7b:a21b0638@ us-cdbr-east-05.cleardb.net /heroku_6d289086b4b51ae?reconnect=true
