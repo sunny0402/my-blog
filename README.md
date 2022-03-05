@@ -33,3 +33,7 @@ MySQL is configured to only allow connections from localhost by default
 To connect run: mysql -uroot To restart mysql after an upgrade: brew services restart mysql
 
 brew install --cask mysqlworkbench
+
+hint: git config pull.rebase false # merge (the default strategy)
+hint: git config pull.rebase true # rebase
+hint: git config pull.ff only # fast-forward only
