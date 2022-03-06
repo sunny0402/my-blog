@@ -1,11 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const path = require("path");
-const { Router } = require("express");
-const my_db = require("./database/index");
-const { Article } = require("./database/models/article");
+// const { Router } = require("express");
+const my_db = require("./database");
+const { Article } = my_db.models;
 
-const router = new Router();
+// const router = new Router();
 const app = express();
 
 /* Middleware*/
@@ -19,8 +19,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 async function database_start() {
-  //{ force: true } would drop all tables and create again
-  await my_db.my_db_connection_instance.sync();
+  //{ force: true } would drop all tables and create agaçin
+  await my_db.my_db_connection_instance.sync({ force: true });
   try {
     await my_db.my_db_connection_instance.authenticate();
     console.log("Connection to the database successful!");
@@ -31,8 +31,15 @@ async function database_start() {
 
       Article.create({
         title: "First Article",
-        author: "Alex",
+        author: "sunny-codes",
         content: "Testing... First Article. About Python.",
+        publishDate: "2022-03-02",
+      }),
+      Article.create({
+        title: "Second Article",
+        author: "sunny-codes",
+        content: "Testing... Second Article. About JavaScript.",
+        publishDate: "2022-03-06",
       }),
     ]);
   } catch (error) {
@@ -52,26 +59,36 @@ database_start().then(() => {
 });
 
 // an api endpoint that returns a short list of items
-router.get("/api/getArticles", async (req, res) => {
+app.get("/api/getArticles", async (req, res) => {
+  console.log("get all articles request received ...");
   try {
     //await db operation
-    const list = [
-      {
-        title: "Article 1",
-        publishDate: "2022-02-26",
-        content: "The text goes here. It is the blog article 1.",
-        author: "sunny-codes",
-      },
-    ];
-    res.json(list);
-    console.log(res.json(list));
+    const articles = await Article.findAll({
+      order: [["publishDate", "DESC"]],
+    });
+    console.log("start articles ...");
+    console.log(articles);
+    console.log("end articles ...");
+
+    res.json(articles);
+    console.log(res.json(articles));
   } catch (error) {
-    res.sendStatus(err.status || 500);
+    res.sendStatus(error.status || 500);
+  }
+});
+
+// get a single article
+app.get("/api/:id", async (req, res) => {
+  try {
+    console.log(`article requested: ${req.params.id}`);
+    const article = await Article.findByPk(req.params.id);
+  } catch (error) {
+    res.sendStatus(error.status || 500);
   }
 });
 
 // Handles any requests that don't match the ones above
-app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  res.sendStatus(err.status || 404);
-});
+// app.get("*", (req, res) => {
+//   //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
+//   res.sendStatus(err.status || 404);
+// });

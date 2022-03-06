@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import BlogHome from "./BlogHome";
+import About from "./About";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -37,10 +38,27 @@ class App extends Component {
 
     return (
       <div className="app">
+        <nav style={{ margin: 10 }}>
+          <Link to="/" style={{ padding: 5 }}>
+            Home
+          </Link>
+          <Link to="/about" style={{ padding: 5 }}>
+            About
+          </Link>
+        </nav>
         <Routes>
           <Route
             path="/"
             element={<BlogHome my_articles={my_article_state} />}
+          />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
           />
         </Routes>
       </div>
