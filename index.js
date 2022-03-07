@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 // const { Router } = require("express");
-const my_db = require("./database");
+let my_db = require("./database");
 const { Article } = my_db.models;
 
 // const router = new Router();
