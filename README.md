@@ -46,6 +46,7 @@ hint: git config pull.ff only # fast-forward only
 
 https://medium.com/swlh/building-a-react-app-with-a-express-back-end-in-the-same-project-with-external-access-to-a-mysql-e06ef83c257d
 For dev enviroment try the following set up:
-"server": "nodemon -r dotenv/config ./src/server/server.js",
+nodemon and concurrently
+"server": "nodemon ../index.js",
 "client": "react-scripts start",
 "dev": "concurrently \"yarn run server\" \"yarn run client\""
