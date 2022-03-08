@@ -53,8 +53,12 @@ async function database_start() {
 
 database_start();
 const port = process.env.PORT || 5000;
-app.listen(port);
-console.log("App is listening on port " + port);
+try {
+  app.listen(port);
+  console.log("App is listening on port " + port);
+} catch (error) {
+  throw error;
+}
 
 // database_start().then(() => {
 //   app.listen(port);
@@ -69,12 +73,7 @@ app.get("/api/getArticles", async (req, res) => {
     const articles = await Article.findAll({
       order: [["publishDate", "DESC"]],
     });
-    console.log("start articles ...");
-    console.log(articles);
-    console.log("end articles ...");
-
     res.json(articles);
-    console.log(res.json(articles));
   } catch (error) {
     res.sendStatus(error.status || 500);
   }

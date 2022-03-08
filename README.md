@@ -56,3 +56,8 @@ nodemon and concurrently
 NPM_CONFIG_PRODUCTION=false
 NODE_MODULES_CACHE=false
 USE_NPM_INSTALL=true
+
+## Debug Deployment
+
+https://stackoverflow.com/questions/17180495/heroku-code-h10-desc-app-crashed-cant-figure-out-why-its-crashing
+heroku restart
