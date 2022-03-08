@@ -50,3 +50,5 @@ nodemon and concurrently
 "server": "nodemon ../index.js",
 "client": "react-scripts start",
 "dev": "concurrently \"yarn run server\" \"yarn run client\""
+
+NPM_CONFIG_PRODUCTION=false
