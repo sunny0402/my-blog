@@ -78,17 +78,17 @@ app.get("/api/getArticles", async (req, res) => {
 });
 
 // get a single article
-app.get("/api/:id", async (req, res) => {
-  try {
-    console.log(`article requested: ${req.params.id}`);
-    const article = await Article.findByPk(req.params.id);
-  } catch (error) {
-    res.sendStatus(error.status || 500);
-  }
-});
-
-// Handles any requests that don't match the ones above
-// app.get("*", (req, res) => {
-//   //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-//   res.sendStatus(err.status || 404);
+// app.get("/api/:id", async (req, res) => {
+//   try {
+//     console.log(`article requested: ${req.params.id}`);
+//     const article = await Article.findByPk(req.params.id);
+//   } catch (error) {
+//     res.sendStatus(error.status || 500);
+//   }
 // });
+
+//Handles any requests that don't match the ones above
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  // res.sendStatus(err.status || 404);
+});
