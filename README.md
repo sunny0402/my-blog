@@ -51,7 +51,8 @@ nodemon and concurrently
 "client": "react-scripts start",
 "dev": "concurrently \"yarn run server\" \"yarn run client\""
 
-NPM_CONFIG_PRODUCTION=false
+## Config Vars
 
+NPM_CONFIG_PRODUCTION=false
 NODE_MODULES_CACHE=false
 USE_NPM_INSTALL=true
