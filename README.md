@@ -61,3 +61,19 @@ USE_NPM_INSTALL=true
 
 https://stackoverflow.com/questions/17180495/heroku-code-h10-desc-app-crashed-cant-figure-out-why-its-crashing
 heroku restart
+
+## Port Already in Use
+
+https://dev.to/mattheindel/fixing-nodemon-error-listen-eaddrinuse-address-in-use-3ic2
+
+Emitted 'error' event on Server instance at:
+at emitErrorNT (node:net:1361:8)
+at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+code: 'EADDRINUSE',
+errno: -48,
+syscall: 'listen',
+address: '::',
+port: 5000
+}
+
+kill -9 $(lsof -t -i:5000)
