@@ -19,7 +19,6 @@ if (process.env.NODE_ENV === "production") {
 }
 
 async function database_start() {
-  //{ force: true } would drop all tables and create agaçin
   await my_db.my_db_connection_instance.sync({ force: true });
   try {
     await my_db.my_db_connection_instance.authenticate();
@@ -52,11 +51,15 @@ async function database_start() {
   }
 }
 
+database_start();
 const port = process.env.PORT || 5000;
-database_start().then(() => {
-  app.listen(port);
-  console.log("App is listening on port " + port);
-});
+app.listen(port);
+console.log("App is listening on port " + port);
+
+// database_start().then(() => {
+//   app.listen(port);
+//   console.log("App is listening on port " + port);
+// });
 
 // an api endpoint that returns a short list of items
 app.get("/api/getArticles", async (req, res) => {
