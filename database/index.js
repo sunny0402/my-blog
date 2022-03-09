@@ -4,6 +4,7 @@ const Sequelize = require("sequelize");
 
 //mysql database local instance 3306
 //to review db connection url: heroku config | grep CLEARDB
+//delete node_modules and heroku restart
 const my_db_connection_instance = new Sequelize(process.env.DB_URL, {
   dialect: "mysql",
 });
