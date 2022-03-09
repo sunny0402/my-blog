@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Article from "./Article";
+import Navbar from "./Navbar";
 
 class BlogHome extends Component {
   render() {
@@ -9,6 +10,7 @@ class BlogHome extends Component {
 
     return (
       <div className="articles-bookshelf">
+        <Navbar />
         <ol className="articles-grid">
           {my_articles.map((an_article, an_article_idx) => {
             return <Article key={an_article_idx} the_article={an_article} />;

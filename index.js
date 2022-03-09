@@ -76,8 +76,11 @@ app.get("/api/getArticles", async (req, res) => {
     const articles = await Article.findAll({
       order: [["publishDate", "DESC"]],
     });
+    console.log("articles from db:");
+    console.log(articles);
     res.json(articles);
   } catch (error) {
+    console.log(error);
     res.sendStatus(error.status || 500);
   }
 });
@@ -93,7 +96,7 @@ app.get("/api/getArticles", async (req, res) => {
 // });
 
 //Handles any requests that don't match the ones above
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  // res.sendStatus(err.status || 404);
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
+//   // res.sendStatus(err.status || 404);
+// });

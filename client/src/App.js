@@ -38,14 +38,6 @@ class App extends Component {
 
     return (
       <div className="app">
-        {/* <nav style={{ margin: 10 }}>
-          <Link to="/" style={{ padding: 5 }}>
-            Home
-          </Link>
-          <Link to="/about" style={{ padding: 5 }}>
-            About
-          </Link>
-        </nav> */}
         <Routes>
           <Route
             path="/"
