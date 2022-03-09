@@ -16,14 +16,14 @@ app.use(cors());
 // if deployed serve static files from build folder
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build/")));
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  });
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  // });
 } else {
   app.use(express.static(path.join(__dirname, "/client/public/index.html")));
-  app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname + "/client/public/index.html"));
-  });
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname + "/client/public/index.html"));
+  // });
 }
 
 async function database_start() {
@@ -93,7 +93,7 @@ app.get("/api/getArticles", async (req, res) => {
 // });
 
 //Handles any requests that don't match the ones above
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-//   // res.sendStatus(err.status || 404);
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  // res.sendStatus(err.status || 404);
+});
