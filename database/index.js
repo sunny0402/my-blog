@@ -3,21 +3,22 @@ console.log(process.env);
 const Sequelize = require("sequelize");
 
 //mysql database local instance 3306
-const my_db_connection_instance = new Sequelize(
-  process.env.DB_NAME,
-  process.env.USERNAME,
-  process.env.PASSWORD,
-  {
-    host: process.env.HOST,
-    dialect: "mysql",
+const my_db_connection_instance = new Sequelize(process.env.DB_URL);
+// const my_db_connection_instance = new Sequelize(
+//   process.env.DB_NAME,
+//   process.env.USERNAME,
+//   process.env.PASSWORD,
+//   {
+//     host: process.env.HOST,
+//     dialect: "mysql",
 
-    // can set global options here
-    // define: {
-    //   freezeTableName: true,
-    //   timestamps: false,
-    // },
-  }
-);
+//     // can set global options here
+//     // define: {
+//     //   freezeTableName: true,
+//     //   timestamps: false,
+//     // },
+//   }
+// );
 
 const db_to_export = {
   my_db_connection_instance,
