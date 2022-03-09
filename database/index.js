@@ -3,7 +3,9 @@ console.log(process.env);
 const Sequelize = require("sequelize");
 
 //mysql database local instance 3306
-const my_db_connection_instance = new Sequelize(process.env.DB_URL);
+const my_db_connection_instance = new Sequelize(process.env.DB_URL, {
+  dialect: "mysql",
+});
 // const my_db_connection_instance = new Sequelize(
 //   process.env.DB_NAME,
 //   process.env.USERNAME,
