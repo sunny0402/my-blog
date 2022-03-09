@@ -16,13 +16,12 @@ app.use(cors());
 // if deployed serve static files from build folder
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build/")));
-  app.get("/*", (req, res) => {
+  app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "/client/build/index.html"));
-    // res.sendStatus(err.status || 404);
   });
 } else {
   app.use(express.static(path.join(__dirname, "/client/public/index.html")));
-  app.get("/*", (req, res) => {
+  app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname + "/client/public/index.html"));
   });
 }
@@ -68,11 +67,6 @@ try {
 } catch (error) {
   throw error;
 }
-
-// database_start().then(() => {
-//   app.listen(port);
-//   console.log("App is listening on port " + port);
-// });
 
 // an api endpoint that returns a short list of items
 app.get("/api/getArticles", async (req, res) => {
