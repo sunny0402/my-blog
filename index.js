@@ -73,23 +73,23 @@ app.get("/api/getArticles", async (req, res) => {
   console.log("get all articles request received ...");
   try {
     //await db operation
-    // const articles = await Article.findAll({
-    //   order: [["publishDate", "DESC"]],
-    // });
-    const artices = [
-      {
-        title: "First Article",
-        author: "sunny-codes",
-        content: "Testing... First Article. About Python.",
-        publishDate: "2022-03-02",
-      },
-      {
-        title: "Second Article",
-        author: "sunny-codes",
-        content: "Testing... Second Article. About Python.",
-        publishDate: "2022-03-03",
-      },
-    ];
+    const articles = await Article.findAll({
+      order: [["publishDate", "DESC"]],
+    });
+    // const artices = [
+    //   {
+    //     title: "First Article",
+    //     author: "sunny-codes",
+    //     content: "Testing... First Article. About Python.",
+    //     publishDate: "2022-03-02",
+    //   },
+    //   {
+    //     title: "Second Article",
+    //     author: "sunny-codes",
+    //     content: "Testing... Second Article. About Python.",
+    //     publishDate: "2022-03-03",
+    //   },
+    // ];
     console.log("articles from db:");
     console.log(articles);
     res.json(articles);
@@ -111,6 +111,6 @@ app.get("/api/getArticles", async (req, res) => {
 
 //Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
-  // res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  res.sendStatus(404);
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  //res.sendStatus(404);
 });
