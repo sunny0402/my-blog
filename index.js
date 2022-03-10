@@ -47,13 +47,6 @@ async function database_start() {
 }
 
 database_start();
-const port = process.env.PORT || 5000;
-try {
-  app.listen(port);
-  console.log("App is listening on port " + port);
-} catch (error) {
-  throw error;
-}
 
 // an api endpoint that returns a short list of items
 app.get("/api/getArticles", async (req, res) => {
@@ -110,7 +103,15 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // //Handles any requests that don't match the ones above
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-//   //res.sendStatus(404);
-// });
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  //res.sendStatus(404);
+});
+
+const port = process.env.PORT || 5000;
+try {
+  app.listen(port);
+  console.log("App is listening on port " + port);
+} catch (error) {
+  throw error;
+}
