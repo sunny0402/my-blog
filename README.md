@@ -77,3 +77,7 @@ port: 5000
 }
 
 kill -9 $(lsof -t -i:5000)
+
+## Failed to load resource: the server responded with a status of 500 (Internal Server Error)
+
+https://stackoverflow.com/questions/70317568/deploy-node-js-express-backend-to-heroku
