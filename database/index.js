@@ -5,24 +5,42 @@ const Sequelize = require("sequelize");
 //mysql database local instance 3306
 //to review db connection url: heroku config | grep CLEARDB
 //delete node_modules and heroku restart
-// const my_db_connection_instance = new Sequelize(process.env.DB_URL, {
-//   dialect: "mysql",
-// });
-const my_db_connection_instance = new Sequelize(
-  process.env.DB_NAME,
-  process.env.USERNAME,
-  process.env.PASSWORD,
-  {
-    host: process.env.HOST,
-    dialect: "mysql",
+let my_db_connection_instance;
+if (process.env.JAWSDB_URL) {
+  my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL);
+} else {
+  my_db_connection_instance = new Sequelize(
+    process.env.DB_NAME,
+    process.env.USERNAME,
+    process.env.PASSWORD,
+    {
+      host: "localhost",
+      dialect: "mysql",
+      port: 3306,
 
-    // can set global options here
-    // define: {
-    //   freezeTableName: true,
-    //   timestamps: false,
-    // },
-  }
-);
+      // can set global options here
+      // define: {
+      //   freezeTableName: true,
+      //   timestamps: false,
+      // },
+    }
+  );
+}
+// const my_db_connection_instance = new Sequelize(
+//   process.env.DB_NAME,
+//   process.env.USERNAME,
+//   process.env.PASSWORD,
+//   {
+//     host: process.env.HOST,
+//     dialect: "mysql",
+
+//     // can set global options here
+//     // define: {
+//     //   freezeTableName: true,
+//     //   timestamps: false,
+//     // },
+//   }
+// );
 
 const db_to_export = {
   my_db_connection_instance,
