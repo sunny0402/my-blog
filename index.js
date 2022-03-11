@@ -83,23 +83,23 @@ app.get("/api/getArticles", async (req, res) => {
   console.log("get all articles request received ...");
   try {
     //await db operation
-    // const articles = await Article.findAll({
-    //   order: [["publishDate", "DESC"]],
-    // });
-    const articles = [
-      {
-        title: "First Article",
-        author: "sunny-codes",
-        content: "Testing... First Article. About Python.",
-        publishDate: "2022-03-02",
-      },
-      {
-        title: "Second Article",
-        author: "sunny-codes",
-        content: "Testing... Second Article. About Python.",
-        publishDate: "2022-03-03",
-      },
-    ];
+    const articles = await Article.findAll({
+      order: [["publishDate", "DESC"]],
+    });
+    // const articles = [
+    //   {
+    //     title: "First Article",
+    //     author: "sunny-codes",
+    //     content: "Testing... First Article. About Python.",
+    //     publishDate: "2022-03-02",
+    //   },
+    //   {
+    //     title: "Second Article",
+    //     author: "sunny-codes",
+    //     content: "Testing... Second Article. About Python.",
+    //     publishDate: "2022-03-03",
+    //   },
+    // ];
     console.log("articles from db:");
     console.log(articles);
     res.json(articles);
