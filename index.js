@@ -14,27 +14,26 @@ app.use(express.json());
 app.use(cors());
 
 async function database_start() {
-  await my_db.my_db_connection_instance.sync({ force: true });
-  await my_db.my_db_connection_instance.authenticate();
-  console.log("Connection to the database successful!");
+  // await my_db.my_db_connection_instance.authenticate();
+  // console.log("Connection to the database successful!");
   try {
-    const articleInstances = await Promise.all([
-      //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd)
-      //    isPublished(false), content
+    await my_db.my_db_connection_instance.sync({ force: true });
+    //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd)
+    //    isPublished(false), content
 
-      Article.create({
-        title: "First Article",
-        author: "sunny-codes",
-        content: "Testing... First Article. About Python.",
-        publishDate: "2022-03-02",
-      }),
-      Article.create({
-        title: "Second Article",
-        author: "sunny-codes",
-        content: "Testing... Second Article. About JavaScript.",
-        publishDate: "2022-03-06",
-      }),
-    ]);
+    // const articleInstances = await Promise.all([   ]);
+    await Article.create({
+      title: "First Article",
+      author: "sunny-codes",
+      content: "Testing... First Article. About Python.",
+      publishDate: "2022-03-02",
+    });
+    await Article.create({
+      title: "Second Article",
+      author: "sunny-codes",
+      content: "Testing... Second Article. About JavaScript.",
+      publishDate: "2022-03-06",
+    });
     console.log("Entered articles into database successful!");
   } catch (error) {
     if (error.name === "SequelizeValidationError") {
@@ -48,6 +47,35 @@ async function database_start() {
 }
 
 // database_start();
+
+// if deployed serve static files from build folder
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  // });
+} else {
+  app.use(express.static(path.join(__dirname, "/client/public")));
+  // app.get("*", (req, res) => {
+  //   res.sendFile(path.join(__dirname + "/client/public/index.html"));
+  // });
+}
+
+// //Handles any requests that don't match the ones above
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  //res.sendStatus(404);
+});
+
+const port = process.env.PORT || 5000;
+try {
+  database_start().then(() => {
+    app.listen(port);
+    console.log("App is listening on port " + port);
+  });
+} catch (error) {
+  throw error;
+}
 
 // an api endpoint that returns a short list of items
 app.get("/api/getArticles", async (req, res) => {
@@ -89,32 +117,3 @@ app.get("/api/getArticles", async (req, res) => {
 //     res.sendStatus(error.status || 500);
 //   }
 // });
-
-// if deployed serve static files from build folder
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/client/build")));
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  // });
-} else {
-  app.use(express.static(path.join(__dirname, "/client/public")));
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname + "/client/public/index.html"));
-  // });
-}
-
-// //Handles any requests that don't match the ones above
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  //res.sendStatus(404);
-});
-
-const port = process.env.PORT || 5000;
-try {
-  database_start().then(() => {
-    app.listen(port);
-    console.log("App is listening on port " + port);
-  });
-} catch (error) {
-  throw error;
-}
