@@ -15,10 +15,9 @@ app.use(cors());
 
 async function database_start() {
   await my_db.my_db_connection_instance.sync({ force: true });
+  await my_db.my_db_connection_instance.authenticate();
+  console.log("Connection to the database successful!");
   try {
-    await my_db.my_db_connection_instance.authenticate();
-    console.log("Connection to the database successful!");
-
     const articleInstances = await Promise.all([
       //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd)
       //    isPublished(false), content
@@ -42,7 +41,8 @@ async function database_start() {
       const errors = error.errors.map((err) => err.message);
       console.error("Validation errors: ", errors);
     } else {
-      throw error;
+      // throw error;
+      console.log(error);
     }
   }
 }
