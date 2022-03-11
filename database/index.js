@@ -13,7 +13,7 @@ const my_db_connection_instance = new Sequelize(
   {
     host: process.env.HOST,
     dialect: "mysql",
-    port: 3306,
+    // port: 3306,
 
     // can set global options here
     // define: {
