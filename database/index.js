@@ -10,42 +10,28 @@ if (process.env.JAWSDB_URL) {
   my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL, {
     dialect: "mysql",
   });
-} else {
-  //redundant, but not sure if using connection URL works
-  my_db_connection_instance = new Sequelize(
-    process.env.DB_NAME,
-    process.env.USERNAME,
-    process.env.PASSWORD,
-    // host: "localhost",
-    {
-      host: "m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-      dialect: "mysql",
-      port: 3306,
-
-      // can set global options here
-      // define: {
-      //   freezeTableName: true,
-      //   timestamps: false,
-      // },
-    }
-  );
 }
-// const my_db_connection_instance = new Sequelize(
-//   process.env.DB_NAME,
-//   process.env.USERNAME,
-//   process.env.PASSWORD,
-//   {
-//     host: process.env.HOST,
-//     dialect: "mysql",
 
-//     // can set global options here
-//     // define: {
-//     //   freezeTableName: true,
-//     //   timestamps: false,
-//     // },
-//   }
-// );
+// else {
+//   //redundant, but not sure if using connection URL works
+//   my_db_connection_instance = new Sequelize(
+//     process.env.DB_NAME,
+//     process.env.USERNAME,
+//     process.env.PASSWORD,
+//     // host: "localhost",
+//     {
+//       host: process.env.HOST,
+//       dialect: "mysql",
+//       port: 3306,
 
+//       // can set global options here
+//       // define: {
+//       //   freezeTableName: true,
+//       //   timestamps: false,
+//       // },
+//     }
+//   );
+// }
 const db_to_export = {
   my_db_connection_instance,
   Sequelize,
