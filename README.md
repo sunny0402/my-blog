@@ -88,3 +88,5 @@ https://devcenter.heroku.com/articles/jawsdb#connection-strategies
 
 heroku config:get JAWSDB_URL
 mysql://username:password@hostname:port/default_schema
+
+## ClearDB
