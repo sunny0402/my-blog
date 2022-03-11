@@ -47,7 +47,7 @@ async function database_start() {
   }
 }
 
-database_start();
+// database_start();
 
 // an api endpoint that returns a short list of items
 app.get("/api/getArticles", async (req, res) => {
@@ -111,8 +111,10 @@ app.get("*", (req, res) => {
 
 const port = process.env.PORT || 5000;
 try {
-  app.listen(port);
-  console.log("App is listening on port " + port);
+  database_start().then(() => {
+    app.listen(port);
+    console.log("App is listening on port " + port);
+  });
 } catch (error) {
   throw error;
 }
