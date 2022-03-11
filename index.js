@@ -61,12 +61,6 @@ if (process.env.NODE_ENV === "production") {
   // });
 }
 
-// //Handles any requests that don't match the ones above
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  //res.sendStatus(404);
-});
-
 const port = process.env.PORT || 5000;
 try {
   database_start().then(() => {
@@ -117,3 +111,9 @@ app.get("/api/getArticles", async (req, res) => {
 //     res.sendStatus(error.status || 500);
 //   }
 // });
+
+// //Handles any requests that don't match the ones above
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  //res.sendStatus(404);
+});
