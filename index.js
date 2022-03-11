@@ -25,14 +25,21 @@ async function database_start() {
     await Article.create({
       title: "First Article",
       author: "sunny-codes",
-      content: "Testing... First Article. About Python.",
-      publishDate: "2022-03-02",
+      content:
+        "Testing... First Article. About Python. It is a great article. It was the best article ever.",
+      publishDate: "2022-03-04",
     });
     await Article.create({
       title: "Second Article",
       author: "sunny-codes",
       content: "Testing... Second Article. About JavaScript.",
       publishDate: "2022-03-06",
+    });
+    await Article.create({
+      title: "Second Article",
+      author: "sunny-codes",
+      content: "Testing... Thirt article. Article. About JavaScript.",
+      publishDate: "2022-03-07",
     });
     console.log("Entered articles into database successful!");
   } catch (error) {
