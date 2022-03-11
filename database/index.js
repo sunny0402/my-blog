@@ -7,14 +7,18 @@ const Sequelize = require("sequelize");
 //delete node_modules and heroku restart
 let my_db_connection_instance;
 if (process.env.JAWSDB_URL) {
-  my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL);
+  my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL, {
+    dialect: "mysql",
+  });
 } else {
+  //redundant, but not sure if using connection URL works
   my_db_connection_instance = new Sequelize(
     process.env.DB_NAME,
     process.env.USERNAME,
     process.env.PASSWORD,
+    // host: "localhost",
     {
-      host: "localhost",
+      host: "m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
       dialect: "mysql",
       port: 3306,
 
