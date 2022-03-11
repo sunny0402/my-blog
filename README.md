@@ -81,3 +81,10 @@ kill -9 $(lsof -t -i:5000)
 ## Failed to load resource: the server responded with a status of 500 (Internal Server Error)
 
 https://stackoverflow.com/questions/70317568/deploy-node-js-express-backend-to-heroku
+
+## Error Code: 1142. SELECT command denied to user ..credentials.. for table 'articles'
+
+https://devcenter.heroku.com/articles/jawsdb#connection-strategies
+
+heroku config:get JAWSDB_URL
+mysql://username:password@hostname:port/default_schema
