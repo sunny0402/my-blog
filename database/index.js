@@ -5,12 +5,15 @@ const Sequelize = require("sequelize");
 //mysql database local instance 3306
 //to review db connection url: heroku config | grep CLEARDB
 //delete node_modules and heroku restart
-let my_db_connection_instance;
-if (process.env.JAWSDB_URL) {
-  my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL, {
-    dialect: "mysql",
-  });
-}
+// let my_db_connection_instance;
+const my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL, {
+  dialect: "mysql",
+});
+// if (process.env.JAWSDB_URL) {
+//   my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL, {
+//     dialect: "mysql",
+//   });
+// }
 
 // else {
 //   //redundant, but not sure if using connection URL works
