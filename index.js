@@ -20,7 +20,8 @@ async function database_start() {
   try {
     await my_db.my_db_connection_instance.authenticate();
     console.log("Connection to the database successful!");
-    await my_db.my_db_connection_instance.sync({ force: true });
+    //{ force: true }
+    await my_db.my_db_connection_instance.sync();
     //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd)
     //    isPublished(false), content
 
@@ -58,6 +59,16 @@ async function database_start() {
 
 // database_start();
 
+const port = process.env.PORT || 5000;
+try {
+  database_start().then(() => {
+    app.listen(port);
+    console.log("App is listening on port " + port);
+  });
+} catch (error) {
+  throw error;
+}
+
 // if deployed serve static files from build folder
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));
@@ -69,16 +80,6 @@ if (process.env.NODE_ENV === "production") {
   // app.get("*", (req, res) => {
   //   res.sendFile(path.join(__dirname + "/client/public/index.html"));
   // });
-}
-
-const port = process.env.PORT || 5000;
-try {
-  database_start().then(() => {
-    app.listen(port);
-    console.log("App is listening on port " + port);
-  });
-} catch (error) {
-  throw error;
 }
 
 // an api endpoint that returns a short list of items
