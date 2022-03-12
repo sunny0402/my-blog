@@ -11,12 +11,15 @@ const app = express();
 /* Middleware*/
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: "http://localhost:3000",
+};
+app.use(cors(corsOptions));
 
 async function database_start() {
-  // await my_db.my_db_connection_instance.authenticate();
-  // console.log("Connection to the database successful!");
   try {
+    await my_db.my_db_connection_instance.authenticate();
+    console.log("Connection to the database successful!");
     await my_db.my_db_connection_instance.sync({ force: true });
     //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd)
     //    isPublished(false), content
@@ -27,7 +30,7 @@ async function database_start() {
       author: "sunny-codes",
       content:
         "Testing... First Article. About Python. It is a great article. It was the best article ever.",
-      publishDate: "2022-03-04",
+      publishDate: "2022-03-07",
     });
     await Article.create({
       title: "Second Article",
