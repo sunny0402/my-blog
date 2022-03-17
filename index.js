@@ -30,26 +30,28 @@ async function database_start() {
     // console.log(results);
     // console.log(metadata);
     // const articleInstances = await Promise.all([   ]);
-    await Article.create({
-      title: "First Article",
-      author: "sunny-codes",
-      content:
-        "Testing... First Article. About Python. It is a great article. It was the best article ever.",
-      // publishDate: "2022-03-07",
-    });
-    await Article.create({
-      title: "Second Article",
-      author: "sunny-codes",
-      content: "Testing... Second Article. About JavaScript.",
-      // publishDate: new Date().toLocaleDateString(),
-      // publishDate: "2022-03-06",
-    });
-    await Article.create({
-      title: "Second Article",
-      author: "sunny-codes",
-      content: "Testing... Thirt article. Article. About JavaScript.",
-      // publishDate: "2022-03-07",
-    });
+
+    //create table on mysql workbench...
+    // await Article.create({
+    //   title: "First Article",
+    //   author: "sunny-codes",
+    //   content:
+    //     "Testing... First Article. About Python. It is a great article. It was the best article ever.",
+    //   // publishDate: "2022-03-07",
+    // });
+    // await Article.create({
+    //   title: "Second Article",
+    //   author: "sunny-codes",
+    //   content: "Testing... Second Article. About JavaScript.",
+    //   // publishDate: new Date().toLocaleDateString(),
+    //   // publishDate: "2022-03-06",
+    // });
+    // await Article.create({
+    //   title: "Second Article",
+    //   author: "sunny-codes",
+    //   content: "Testing... Thirt article. Article. About JavaScript.",
+    //   // publishDate: "2022-03-07",
+    // });
     console.log("Entered articles into database successful!");
   } catch (error) {
     if (error.name === "SequelizeValidationError") {
