@@ -13,6 +13,11 @@ const my_db_connection_instance = new Sequelize(
   {
     host: process.env.HOST,
     dialect: "mysql",
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000,
+    },
     // port: 3306,
 
     // can set global options here

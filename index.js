@@ -21,29 +21,34 @@ async function database_start() {
     await my_db.my_db_connection_instance.authenticate();
     console.log("Connection to the database successful!");
     //{ force: true }
-    await my_db.my_db_connection_instance.sync();
+    await my_db.my_db_connection_instance.sync({ force: true });
     //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd)
     //    isPublished(false), content
 
+    //SET sql_mode = '';
+    // const [results, metadata] = await sequelize.query("SET sql_mode = ''");
+    // console.log(results);
+    // console.log(metadata);
     // const articleInstances = await Promise.all([   ]);
     await Article.create({
       title: "First Article",
       author: "sunny-codes",
       content:
         "Testing... First Article. About Python. It is a great article. It was the best article ever.",
-      publishDate: "2022-03-07",
+      // publishDate: "2022-03-07",
     });
     await Article.create({
       title: "Second Article",
       author: "sunny-codes",
       content: "Testing... Second Article. About JavaScript.",
-      publishDate: "2022-03-06",
+      // publishDate: new Date().toLocaleDateString(),
+      // publishDate: "2022-03-06",
     });
     await Article.create({
       title: "Second Article",
       author: "sunny-codes",
       content: "Testing... Thirt article. Article. About JavaScript.",
-      publishDate: "2022-03-07",
+      // publishDate: "2022-03-07",
     });
     console.log("Entered articles into database successful!");
   } catch (error) {
@@ -57,14 +62,16 @@ async function database_start() {
   }
 }
 
-// database_start();
+database_start();
 
 const port = process.env.PORT || 5000;
 try {
-  database_start().then(() => {
-    app.listen(port);
-    console.log("App is listening on port " + port);
-  });
+  app.listen(port);
+  console.log("App is listening on port " + port);
+  // database_start().then(() => {
+  //   app.listen(port);
+  //   console.log("App is listening on port " + port);
+  // });
 } catch (error) {
   throw error;
 }

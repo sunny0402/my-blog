@@ -98,3 +98,15 @@ email varchar(255) NOT NULL,
 name varchar(255) NOT NULL,
 active BOOLEAN DEFAULT false
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+## Sql Error
+
+code: 'ER_INVALID_DEFAULT',
+errno: 1067,
+sqlState: '42000',
+sqlMessage: "Invalid default value for 'publishDate'",
+sql: "CREATE TABLE IF NOT EXISTS `Articles` (`id` INTEGER auto_increment , `title` VARCHAR(255) NOT NULL, `author` VARCHAR(255) NOT NULL DEFAULT 'Alex', `readTime` INTEGER NOT NULL DEFAULT 10, `publishDate` DATE NOT NULL DEFAULT '3/16/2022', `isPublished` TINYINT(1) NOT NULL DEFAULT false, `content` TEXT NOT NULL, `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `deletedAt` DATETIME, PRIMARY KEY (`id`)) ENGINE=InnoDB;",
+parameters: undefined
+},
+https://stackoverflow.com/questions/36374335/error-in-mysql-when-setting-default-value-for-date-or-datetime
+SET sql_mode = '';
