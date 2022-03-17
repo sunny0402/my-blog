@@ -110,3 +110,11 @@ parameters: undefined
 },
 https://stackoverflow.com/questions/36374335/error-in-mysql-when-setting-default-value-for-date-or-datetime
 SET sql_mode = '';
+
+## SQL Error
+
+sqlMessage: "Table 'heroku_fe588cd2c7221ff.articles' doesn't exist",
+
+https://stackoverflow.com/questions/6134006/are-table-names-in-mysql-case-sensitive
+https://stackoverflow.com/questions/63459248/aws-rds-database-error-er-no-such-table-table-doesnt-exist-but-the-same-sc
+Database and table names are not case sensitive in Windows, and case sensitive in most varieties of Unix.

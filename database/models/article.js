@@ -92,6 +92,7 @@ function articleModelFunction(sqlize_connection_instance) {
       //   modelName: 'movie', // set model name to 'movie'; table name will be 'movies'
       //   tableName: 'my_movies_table', // table name change
       //   soft deletes(paranoid): mark record as deleted instead of actually deleting
+      modelName: "article", //table name will be articles
       paranoid: "true",
       sequelize: sqlize_connection_instance,
     }

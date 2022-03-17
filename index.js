@@ -32,26 +32,27 @@ async function database_start() {
     // const articleInstances = await Promise.all([   ]);
 
     //create table on mysql workbench...
-    // await Article.create({
-    //   title: "First Article",
-    //   author: "sunny-codes",
-    //   content:
-    //     "Testing... First Article. About Python. It is a great article. It was the best article ever.",
-    //   // publishDate: "2022-03-07",
-    // });
-    // await Article.create({
-    //   title: "Second Article",
-    //   author: "sunny-codes",
-    //   content: "Testing... Second Article. About JavaScript.",
-    //   // publishDate: new Date().toLocaleDateString(),
-    //   // publishDate: "2022-03-06",
-    // });
-    // await Article.create({
-    //   title: "Second Article",
-    //   author: "sunny-codes",
-    //   content: "Testing... Thirt article. Article. About JavaScript.",
-    //   // publishDate: "2022-03-07",
-    // });
+
+    await Article.create({
+      title: "First Article",
+      author: "sunny-codes",
+      content:
+        "Testing... First Article. About Python. It is a great article. It was the best article ever.",
+      // publishDate: "2022-03-07",
+    });
+    await Article.create({
+      title: "Second Article",
+      author: "sunny-codes",
+      content: "Testing... Second Article. About JavaScript.",
+      // publishDate: new Date().toLocaleDateString(),
+      // publishDate: "2022-03-06",
+    });
+    await Article.create({
+      title: "Second Article",
+      author: "sunny-codes",
+      content: "Testing... Thirt article. Article. About JavaScript.",
+      // publishDate: "2022-03-07",
+    });
     console.log("Entered articles into database successful!");
   } catch (error) {
     if (error.name === "SequelizeValidationError") {
@@ -96,9 +97,11 @@ app.get("/api/getArticles", async (req, res) => {
   console.log("get all articles request received ...");
   try {
     //await db operation
-    const articles = await Article.findAll({
-      order: [["publishDate", "DESC"]],
-    });
+    // const articles = await Article.findAll({
+    //   order: [["publishDate", "DESC"]],
+    // });
+    const all_articles = await Article.findAll();
+    console.log(all_articles.map((an_article) => an_article.toJSON()));
     // const articles = [
     //   {
     //     title: "First Article",
