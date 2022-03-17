@@ -49,7 +49,7 @@ function articleModelFunction(sqlize_connection_instance) {
       publishDate: {
         type: Sequelize.DATEONLY,
         allowNull: false,
-        defaultValue: new Date().toLocaleDateString(),
+        // defaultValue: new Date().toLocaleDateString(),
         // defaultValue: Sequelize.NOW,
         validate: {
           notNull: {
