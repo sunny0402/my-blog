@@ -38,21 +38,28 @@ async function database_start() {
       author: "sunny-codes",
       content:
         "Testing... First Article. About Python. It is a great article. It was the best article ever.",
-      publishDate: "2022-03-07",
+      publishDate: "2022-03-17",
     });
     await Article.create({
       title: "Second Article",
       author: "sunny-codes",
       content: "Testing... Second Article. About JavaScript.",
       // publishDate: new Date().toLocaleDateString(),
-      publishDate: "2022-03-06",
+      publishDate: "2022-03-18",
     });
     await Article.create({
       title: "Second Article",
       author: "sunny-codes",
-      content: "Testing... Thirt article. Article. About JavaScript.",
-      publishDate: "2022-03-07",
+      content: "Testing... Third article. Article. About JavaScript.",
+      publishDate: "2022-03-19",
     });
+    await Article.create({
+      title: "Fourth Article",
+      author: "sunny-codes",
+      content: "Testing... Fourth article. Article. About perserverance.",
+      publishDate: "2022-03-22",
+    });
+    //heroku run node index.js: no SQL errors if successful.
     console.log("Entered articles into database successful!");
   } catch (error) {
     if (error.name === "SequelizeValidationError") {
