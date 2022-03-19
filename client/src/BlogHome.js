@@ -1,24 +1,28 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import Article from "./Article";
-import Navbar from "./Navbar";
+import Header from "./Header";
 
-class BlogHome extends Component {
-  render() {
-    const { my_articles } = this.props;
+const sections = [
+  { title: "JavaScript", url: "#" },
+  { title: "Python", url: "#" },
+  { title: "Other", url: "#" },
+];
 
-    return (
-      <div className="articles-bookshelf">
-        <Navbar />
-        <ol className="articles-grid">
-          {my_articles.map((an_article, an_article_idx) => {
-            return <Article key={an_article_idx} the_article={an_article} />;
-          })}
-        </ol>
-      </div>
-    );
-  }
+function BlogHome(props) {
+  const { my_articles } = props;
+
+  return (
+    <div className="articles-bookshelf">
+      {/* <Navbar /> */}
+      <Header title="Blog" sections={sections} />
+      <ol className="articles-grid">
+        {my_articles.map((an_article, an_article_idx) => {
+          return <Article key={an_article_idx} the_article={an_article} />;
+        })}
+      </ol>
+    </div>
+  );
 }
 
 BlogHome.propTypes = {

@@ -118,3 +118,31 @@ sqlMessage: "Table 'heroku_fe588cd2c7221ff.articles' doesn't exist",
 https://stackoverflow.com/questions/6134006/are-table-names-in-mysql-case-sensitive
 https://stackoverflow.com/questions/63459248/aws-rds-database-error-er-no-such-table-table-doesnt-exist-but-the-same-sc
 Database and table names are not case sensitive in Windows, and case sensitive in most varieties of Unix.
+
+## Connection Pool
+
+https://stackoverflow.com/questions/35525574/how-to-use-database-connections-pool-in-sequelize-js
+
+## TODO: Make search bar for each article
+
+https://stackoverflow.com/questions/1084506/how-to-store-articles-or-other-large-texts-in-a-database
+
+## Material UI
+
+https://github.com/mui/material-ui
+Blog template:
+https://github.com/mui/material-ui/tree/v5.5.1/docs/data/material/getting-started/templates/blog
+
+## To use MUI
+
+Convert class components to functional components.
+https://nimblewebdeveloper.com/blog/convert-react-class-to-function-component
+
+## React Router v6 Notes
+
+https://blog.logrocket.com/react-router-v6/
+https://reactrouterdotcom.fly.dev/docs/en/v6/getting-started/tutorial
+
+## Integrate React with Node.js Express & MySQL (run on same Server/Port)
+
+https://github.com/bezkoder/react-express-mysql
