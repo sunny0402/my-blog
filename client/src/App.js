@@ -4,6 +4,7 @@ import BlogHome from "./BlogHome";
 import About from "./About";
 import useFetchData from "./useFetchData";
 import { Routes, Route, Link } from "react-router-dom";
+// For Blog use DuckDuckGo Theme colours. Or MUI dark mode.
 
 function App() {
   // Article state now in useFetchData

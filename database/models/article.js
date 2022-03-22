@@ -1,4 +1,10 @@
 const { Sequelize, DataTypes } = require("sequelize");
+//save mardown to db. then convert markdown to html, sanitize, and render
+//https://github.com/WebDevSimplified/Markdown-Blog/blob/master/models/article.js
+const createDomPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+const dompurify = createDomPurify(new JSDOM().window);
+const marked = require("marked");
 
 function articleModelFunction(sqlize_connection_instance) {
   class Article extends Sequelize.Model {}
@@ -72,9 +78,11 @@ function articleModelFunction(sqlize_connection_instance) {
         allowNull: false,
         defaultValue: false,
       },
-      content: {
+      contentMarkdown: {
+        // constraints are at SQL level
         type: Sequelize.TEXT,
         allowNull: false,
+        // validation at JavaScript level, if fail validation no SQL query
         validate: {
           notNull: {
             msg: "Content cannot be null.",
@@ -83,6 +91,11 @@ function articleModelFunction(sqlize_connection_instance) {
             msg: "Please provide a value for content.",
           },
         },
+      },
+      contentSanitizedHTML: {
+        type: Sequelize.TEXT,
+        required: true,
+        // validate: {}, //use model wide validation to set contentSanitizedHTML
       },
     },
     // 2. Model options object
@@ -95,6 +108,18 @@ function articleModelFunction(sqlize_connection_instance) {
       modelName: "article", //table name will be articles
       paranoid: "true",
       sequelize: sqlize_connection_instance,
+      // model wide validation
+      validate: {
+        sanitizeHTML() {
+          if (this.contentMarkdown) {
+            this.contentSanitizedHTML = dompurify.sanitize(
+              this.contentMarkdown
+            );
+            // this.contentSanitizedHTML = dompurify.sanitize(
+            //   marked.Parser(this.contentMarkdown)
+          }
+        },
+      },
     }
   );
   return Article;

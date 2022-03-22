@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 function Article(props) {
-  const [articleState, setArticlestate] = useState("");
+  // const [articleState, setArticlestate] = useState("");
   const { the_article } = props;
+  console.log(the_article);
   return (
     <div>
-      <li>
+      {/* <li>
         <div className="article">
           <div className="article-top">
             {the_article.title && (
@@ -19,19 +20,23 @@ function Article(props) {
                 <h4>{the_article.publishDate}</h4>
               </div>
             )}
-          </div>
-          {the_article.content && (
-            <div className="article-content">
-              <p>{the_article.content}</p>
-            </div>
-          )}
-          {the_article.author && (
+          </div> */}
+      {/* article content formatted in markdown file and then sanitized html is rendered. */}
+      {the_article.contentSanitizedHTML && (
+        <div
+          className="article-content"
+          dangerouslySetInnerHTML={{
+            __html: the_article.contentSanitizedHTML,
+          }}
+        ></div>
+      )}
+      {/* {the_article.author && (
             <div className="article-author">
               <h4>{the_article.author}</h4>
             </div>
           )}
         </div>
-      </li>
+      </li> */}
     </div>
   );
 }

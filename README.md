@@ -146,3 +146,47 @@ https://reactrouterdotcom.fly.dev/docs/en/v6/getting-started/tutorial
 ## Integrate React with Node.js Express & MySQL (run on same Server/Port)
 
 https://github.com/bezkoder/react-express-mysql
+
+## Convert Class Component to Functional
+
+https://nimblewebdeveloper.com/blog/convert-react-class-to-function-component
+
+## UseEffect Async
+
+https://www.freecodecamp.org/news/introduction-to-react-hooks/
+
+Deploying/Hosting Node.js app on Heroku with MySQL database
+
+https://github.com/bezkoder/nodejs-express-mysql/blob/master/server.js
+
+## Sequelize ORM and Node
+
+https://teamtreehouse.com/library/using-sql-orms-with-nodejs/performing-crud-operations/next-steps
+
+## Good article: Deploying a React app with React-Router and an Express Backend
+
+https://dev.to/nburgess/creating-a-react-app-with-react-router-and-an-express-backend-33l3
+
+## Good article: Deploy with Heroku and MySQL
+
+https://coding-boot-camp.github.io/full-stack/heroku/deploy-with-heroku-and-mysql
+
+## Dark Mode
+
+https://mui.com/customization/dark-mode/
+
+## phpMyAdmin on MacOS
+
+https://www.youtube.com/watch?v=SVNbRXUEDUg
+
+## Save mardown to database
+
+https://github.com/WebDevSimplified/Markdown-Blog/blob/master/models/article.js
+
+## Markdown to React component
+
+https://github.com/markedjs/marked
+
+## Dynamically Load Markdown files into React for your Blog
+
+https://www.youtube.com/watch?v=qdTisPssu24&t=302s
