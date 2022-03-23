@@ -28,16 +28,15 @@ async function database_start() {
     //    isPublished(false), content
 
     //SET sql_mode = '';
-    // const [results, metadata] = await sequelize.query("SET sql_mode = ''");
-    // console.log(results);
-    // console.log(metadata);
     // const articleInstances = await Promise.all([   ]);
-
-    //create table on mysql workbench...
 
     //TODO: import markdown file and assign to contentMarkdown...
     const file1 = fs.readFileSync("./myArticles/blog-post.1.md", "utf8");
     const html_article1 = marked.parse(file1.toString());
+    const file2 = fs.readFileSync("./myArticles/blog-post.2.md", "utf8");
+    const html_article2 = marked.parse(file2.toString());
+    const file3 = fs.readFileSync("./myArticles/blog-post.3.md", "utf8");
+    const html_article3 = marked.parse(file3.toString());
 
     await Article.create({
       title: "First Article",
@@ -45,26 +44,19 @@ async function database_start() {
       contentMarkdown: html_article1,
       publishDate: "2022-03-17",
     });
-    // await Article.create({
-    //   title: "Second Article",
-    //   author: "sunny-codes",
-    //   contentMarkdown: "Testing... Second Article. About JavaScript.",
-    //   // publishDate: new Date().toLocaleDateString(),
-    //   publishDate: "2022-03-18",
-    // });
-    // await Article.create({
-    //   title: "Second Article",
-    //   author: "sunny-codes",
-    //   contentMarkdown: "Testing... Third article. Article. About JavaScript.",
-    //   publishDate: "2022-03-19",
-    // });
-    // await Article.create({
-    //   title: "Fourth Article",
-    //   author: "sunny-codes",
-    //   contentMarkdown:
-    //     "Testing... Fourth article. Article. About perserverance.",
-    //   publishDate: "2022-03-22",
-    // });
+    await Article.create({
+      title: "Second Article",
+      author: "sunny-codes",
+      contentMarkdown: html_article2,
+      // publishDate: new Date().toLocaleDateString(),
+      publishDate: "2022-03-18",
+    });
+    await Article.create({
+      title: "Second Article",
+      author: "sunny-codes",
+      contentMarkdown: html_article3,
+      publishDate: "2022-03-19",
+    });
 
     //heroku run node index.js: no SQL errors if successful.
     console.log("Entered articles into database successful!");
@@ -114,22 +106,6 @@ app.get("/api/getArticles", async (req, res) => {
     const articles = await Article.findAll({
       order: [["publishDate", "DESC"]],
     });
-    // const all_articles = await Article.findAll();
-    // console.log(all_articles.map((an_article) => an_article.toJSON()));
-    // const articles = [
-    //   {
-    //     title: "First Article",
-    //     author: "sunny-codes",
-    //     content: "Testing... First Article. About Python.",
-    //     publishDate: "2022-03-02",
-    //   },
-    //   {
-    //     title: "Second Article",
-    //     author: "sunny-codes",
-    //     content: "Testing... Second Article. About Python.",
-    //     publishDate: "2022-03-03",
-    //   },
-    // ];
     console.log("articles from db:");
     console.log(articles);
     res.json(articles);
