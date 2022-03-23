@@ -24,37 +24,50 @@ async function database_start() {
     console.log("Connection to the database successful!");
     //{ force: true }
     await my_db.my_db_connection_instance.sync({ force: true });
-    //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd)
-    //    isPublished(false), content
+    // TODO: model attributes based on proptypes of Main.js, MainFeaturedPost.js, FeaturedPost.js
+    //    title, author, readTime(10),publishDate(DATEONLY: yyyy-mm-dd), isPublished(false), content
 
-    //SET sql_mode = '';
     // const articleInstances = await Promise.all([   ]);
 
     //TODO: import markdown file and assign to contentMarkdown...
-    const file1 = fs.readFileSync("./myArticles/blog-post.1.md", "utf8");
-    const html_article1 = marked.parse(file1.toString());
-    const file2 = fs.readFileSync("./myArticles/blog-post.2.md", "utf8");
-    const html_article2 = marked.parse(file2.toString());
-    const file3 = fs.readFileSync("./myArticles/blog-post.3.md", "utf8");
-    const html_article3 = marked.parse(file3.toString());
+    //TODO: leave file1 in markdown format... so save a markdown string to db instead of html string..
+    const markdown_article1 = fs.readFileSync(
+      "./myArticles/blog-post.1.md",
+      "utf8"
+    );
+    const html_article1 = marked.parse(markdown_article1);
+
+    const markdown_article2 = fs.readFileSync(
+      "./myArticles/blog-post.2.md",
+      "utf8"
+    );
+    const html_article2 = marked.parse(markdown_article2);
+
+    const markdown_article3 = fs.readFileSync(
+      "./myArticles/blog-post.3.md",
+      "utf8"
+    );
+    const html_article3 = marked.parse(markdown_article3);
 
     await Article.create({
       title: "First Article",
       author: "sunny-codes",
-      contentMarkdown: html_article1,
+      contentMarkdown: markdown_article1,
       publishDate: "2022-03-17",
     });
+
     await Article.create({
       title: "Second Article",
       author: "sunny-codes",
-      contentMarkdown: html_article2,
+      contentMarkdown: markdown_article2,
       // publishDate: new Date().toLocaleDateString(),
       publishDate: "2022-03-18",
     });
+
     await Article.create({
       title: "Second Article",
       author: "sunny-codes",
-      contentMarkdown: html_article3,
+      contentMarkdown: markdown_article3,
       publishDate: "2022-03-19",
     });
 
@@ -77,10 +90,6 @@ const port = process.env.PORT || 5000;
 try {
   app.listen(port);
   console.log("App is listening on port " + port);
-  // database_start().then(() => {
-  //   app.listen(port);
-  //   console.log("App is listening on port " + port);
-  // });
 } catch (error) {
   throw error;
 }

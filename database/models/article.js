@@ -92,6 +92,7 @@ function articleModelFunction(sqlize_connection_instance) {
           },
         },
       },
+      // if wanted to render html instead of markdown
       contentSanitizedHTML: {
         type: Sequelize.TEXT,
         required: true,
@@ -100,11 +101,13 @@ function articleModelFunction(sqlize_connection_instance) {
     },
     // 2. Model options object
     {
+      // Model option notes:
       //   timestamps: false, // disable timestamps
       //   freezeTableName: true, // disable plural table names
       //   modelName: 'movie', // set model name to 'movie'; table name will be 'movies'
       //   tableName: 'my_movies_table', // table name change
       //   soft deletes(paranoid): mark record as deleted instead of actually deleting
+
       modelName: "article", //table name will be articles
       paranoid: "true",
       sequelize: sqlize_connection_instance,
@@ -115,8 +118,6 @@ function articleModelFunction(sqlize_connection_instance) {
             this.contentSanitizedHTML = dompurify.sanitize(
               this.contentMarkdown
             );
-            // this.contentSanitizedHTML = dompurify.sanitize(
-            //   marked.Parser(this.contentMarkdown)
           }
         },
       },

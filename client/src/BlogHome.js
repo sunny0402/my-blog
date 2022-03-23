@@ -9,6 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Header from "./Header";
 import Footer from "./Footer";
 import MainFeaturedPost from "./MainFeaturedPost";
+import Grid from "@mui/material/Grid";
 import Main from "./Main";
 
 // import post1 from "./blog-post1.md";
@@ -69,13 +70,26 @@ function BlogHome(props) {
             <MainFeaturedPost post={mainFeaturedPost} />
             <div className="articles-bookshelf">
               <Header title="Blog" sections={sections} />
-              <ol className="articles-grid">
+              {/* TODO: replace <Article> component with <Main > component */}
+              <Grid container spacing={5} sx={{ mt: 3 }}>
+                <Main title="My articles ..." posts={my_articles} />
+              </Grid>
+
+              {/* TODO: <Main > component will map over posts passing them to <Markdown> */}
+              {/* 
+                {posts.map((post) => (
+                <Markdown className="markdown" key={post.substring(0, 40)}>
+                {post}
+                </Markdown>
+               ))}
+              */}
+              {/* <ol className="articles-grid">
                 {my_articles.map((an_article, an_article_idx) => {
                   return (
                     <Article key={an_article_idx} the_article={an_article} />
                   );
                 })}
-              </ol>
+              </ol> */}
             </div>
           </main>
         </Container>

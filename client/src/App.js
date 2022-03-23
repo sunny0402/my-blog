@@ -13,11 +13,21 @@ function App() {
   // };
   // instead of componentDidMount() {}
   const { data } = useFetchData("/api/getArticles");
+  console.log("App.js: data: ", data);
+
+  let arr_of_md_strings = [];
+  data.forEach((article_obj, idx) => {
+    arr_of_md_strings.push(article_obj.contentMarkdown);
+  });
+  console.log("App.js: arr_of_md_strings: ", arr_of_md_strings);
 
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<BlogHome my_articles={data} />} />
+        <Route
+          path="/"
+          element={<BlogHome my_articles={arr_of_md_strings} />}
+        />
         <Route path="/about" element={<About />} />
         <Route
           path="*"
