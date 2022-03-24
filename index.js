@@ -29,8 +29,7 @@ async function database_start() {
 
     // const articleInstances = await Promise.all([   ]);
 
-    //TODO: import markdown file and assign to contentMarkdown...
-    //TODO: leave file1 in markdown format... so save a markdown string to db instead of html string..
+    // For practice read markdown files on heroku server and save to database.
     const markdown_article1 = fs.readFileSync(
       "./myArticles/blog-post.1.md",
       "utf8"
@@ -102,12 +101,8 @@ if (process.env.NODE_ENV === "production") {
   // });
 } else {
   app.use(express.static(path.join(__dirname, "/client/public")));
-  // app.get("*", (req, res) => {
-  //   res.sendFile(path.join(__dirname + "/client/public/index.html"));
-  // });
 }
 
-// an api endpoint that returns a short list of items
 app.get("/api/getArticles", async (req, res) => {
   console.log("get all articles request received ...");
   try {
@@ -124,7 +119,7 @@ app.get("/api/getArticles", async (req, res) => {
   }
 });
 
-// get a single article
+// get a single article endpoint
 // app.get("/api/:id", async (req, res) => {
 //   try {
 //     console.log(`article requested: ${req.params.id}`);
@@ -137,5 +132,4 @@ app.get("/api/getArticles", async (req, res) => {
 // //Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
-  //res.sendStatus(404);
 });

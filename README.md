@@ -9,4 +9,15 @@ https://sunnycodes.herokuapp.com/
 - material-ui
 - Markdown blog:
   - Blog articles are edited and saved in markdown format.
-  - Saved to databse. And sanitized HTML is rendered.
+  - Saved to databse as a markdown string.
+
+## TODO
+
+Description:
+
+- Currently article markdown files live on Heroku server.
+- To view heroku server: heroku run bash
+- For practice the md files are saved to a MySQL database.
+  ### TODO:
+- Create interface in the frontend to make blog article markdown files
+  and and controllers to save the files to database.
