@@ -7,11 +7,7 @@ import { Routes, Route, Link } from "react-router-dom";
 // For Blog use DuckDuckGo Theme colours. Or MUI dark mode.
 
 function App() {
-  // Article state now in useFetchData
-  // state = {
-  //   my_article_state: [],
-  // };
-  // instead of componentDidMount() {}
+  // request articles from server
   const { data } = useFetchData("/api/getArticles");
   console.log("App.js: data: ", data);
 
