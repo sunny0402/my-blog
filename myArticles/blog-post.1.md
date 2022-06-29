@@ -2,7 +2,7 @@
 
 _April 20, 2022 by [SunnyCodes](/)_
 
-![php image](../myImages/php-640.jpeg "PHP!")
+![php logo image]("PHP")
 
 ```
 console.log("Hello World! My first coding blog article.");

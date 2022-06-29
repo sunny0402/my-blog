@@ -6,12 +6,18 @@ const Sequelize = require("sequelize");
 //to review db connection url: heroku config | grep CLEARDB
 //delete node_modules and heroku restart
 const my_db_connection_instance = new Sequelize(
-  process.env.DB_NAME,
-  process.env.USERNAME,
-  process.env.PASSWORD,
-  // host: "localhost",
+  // For Deployment:
+  // process.env.DB_NAME,
+  // process.env.USERNAME,
+  // process.env.PASSWORD,
+
   {
-    host: process.env.HOST,
+    //For local developmet:
+    database: "blog_local_db",
+    username: "root",
+    password: "",
+    // For Deployment: host: process.env.HOST,
+    host: "localhost",
     dialect: "mysql",
     // pool: {
     //   max: 5,
@@ -28,6 +34,26 @@ const my_db_connection_instance = new Sequelize(
   }
 );
 
+const db_to_export = {
+  my_db_connection_instance,
+  Sequelize,
+  models: {},
+};
+
+db_to_export.models.Article = require("./models/article")(
+  my_db_connection_instance
+);
+
+db_to_export.models.Image = require("./models/image")(
+  my_db_connection_instance
+);
+
+// TODO: add User model
+// db_to_export.models.User = require("./models/user")(my_db_connection_instance);
+
+module.exports = db_to_export;
+
+// Notes:
 // if (process.env.JAWSDB_URL) {
 //   my_db_connection_instance = new Sequelize(process.env.JAWSDB_URL, {
 //     dialect: "mysql",
@@ -54,17 +80,3 @@ const my_db_connection_instance = new Sequelize(
 //     }
 //   );
 // }
-const db_to_export = {
-  my_db_connection_instance,
-  Sequelize,
-  models: {},
-};
-
-db_to_export.models.Article = require("./models/article")(
-  my_db_connection_instance
-);
-
-// TODO: add User model
-// db_to_export.models.User = require("./models/user")(my_db_connection_instance);
-
-module.exports = db_to_export;
