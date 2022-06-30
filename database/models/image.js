@@ -46,10 +46,15 @@ function imageModelFunction(sqlize_connection_instance) {
           },
         },
       },
-      isIcon: {
-        type: Sequelize.BOOLEAN,
+      articleId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: false,
+        defaultValue: 0,
+        validate: {
+          notNull: {
+            msg: "articleId cannot be null.",
+          },
+        },
       },
     },
     // 2. Model options object

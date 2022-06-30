@@ -11,7 +11,8 @@
     <h1>File Upload Test</h1>
 
     <form action="/upload" method="post" enctype="multipart/form-data">
-        <input type="file" name="blog-s3-image-uploads" multiple />
+        <input type="text" name="article-number" placeholder="Enter article id" />
+        <input type="file" name="blog-s3-image-uploads" maxCount: 5 multiple />
         <button>Submit</button>
     </form>
 </body>

@@ -5,7 +5,7 @@ https://sunnycodes.herokuapp.com/
 - Blog website with React, Express and and MySQL.
 - Heroku for deployment. ClearDB.
 - Sequelize
-- React Router v6.
+- React Router v6
 - material-ui
 - Markdown blog:
   - Blog articles are edited and saved in markdown format.
@@ -24,6 +24,6 @@ Description:
 - Create interface in the frontend to make blog article markdown files
   and and controllers to save the files to database.
 
-  ### Notes:
+## Notes:
 
-  - Material UI templates: https://github.com/mui/material-ui/tree/v5.5.1/docs/data/material/getting-started/templates
+- Material UI templates: https://github.com/mui/material-ui/tree/v5.5.1/docs/data/material/getting-started/templates
